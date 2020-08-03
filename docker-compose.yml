@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer
+    command: -H unix:///var/run/docker.sock --no-auth
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - portainer_data:/data
+
+  folding:
+    image: yurinnick/folding-at-home
+    container_name: folding-at-home
+    environment:
+      - USER=Anonymous
+      - TEAM=225605
+      - ENABLE_GPU=false
+      - ENABLE_SMP=true
+    ports:
+      - 7396:7396
+      - 36330:36330
+    restart: unless-stopped
+    command: '--allow 0/0 --web-allow 0/0'
+
+volumes:
+  portainer_data:
