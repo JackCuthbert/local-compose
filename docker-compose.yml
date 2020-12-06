@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  minecraft:
+    container_name: minecraft-server
+    image: itzg/minecraft-server
+    restart: unless-stopped
+    ports: ['25565:25565']
+    environment:
+      - INIT_MEMORY=1G
+      - MAX_MEMORY=8G
+      - EULA=true
+      - GID=985
+    volumes:
+      - /home/jack/Games/minecraft-server:/data
   portainer:
     container_name: portainer
     image: portainer/portainer-ce:2.0.0-alpine
