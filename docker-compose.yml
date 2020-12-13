@@ -13,6 +13,16 @@ services:
       - GID=985
     volumes:
       - /home/jack/Games/minecraft-server:/data
+  minecraft-overviewer:
+    container_name: minecraft-overviewer
+    image: mide/minecraft-overviewer:latest
+    restart: unless-stopped
+    environment:
+      - MINECRAFT_VERSION=1.16.4
+    volumes:
+      - /home/jack/Games/minecraft-server/:/home/minecraft/server/:ro
+      - /home/jack/Games/minecraft-overviewer/render/:/home/minecraft/render/:rw
+      - /home/jack/Games/minecraft-overviewer/config/config.py:/home/minecraft/config.py
   portainer:
     container_name: portainer
     image: portainer/portainer-ce:2.0.0-alpine
