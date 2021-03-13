@@ -25,7 +25,7 @@ services:
       - /home/jack/Games/minecraft-overviewer/config/config.py:/home/minecraft/config.py
   portainer:
     container_name: portainer
-    image: portainer/portainer-ce:2.0.0-alpine
+    image: portainer/portainer-ce:2.1.1-alpine
     restart: always
     ports: ['9000:9000']
     volumes:
